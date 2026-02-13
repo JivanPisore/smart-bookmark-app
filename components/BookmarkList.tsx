@@ -106,7 +106,6 @@ export default function BookmarkList({ userId }: { userId: string }) {
                         key={bookmark.id}
                         className="group relative glass p-6 rounded-[2rem] border border-white/5 hover:border-primary/30 transition-all hover:translate-y-[-6px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] animate-in overflow-hidden"
                     >
-                        {/* Decorative background glow on hover */}
                         <div className="absolute -right-10 -top-10 w-32 h-32 bg-primary/5 blur-3xl rounded-full group-hover:bg-primary/10 transition-colors" />
 
                         <div className="relative z-10">

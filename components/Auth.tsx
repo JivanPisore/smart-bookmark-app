@@ -77,7 +77,6 @@ export default function Auth() {
                     </div>
                 </div>
 
-                {/* Footer simple hint */}
                 <p className="text-sm text-muted-foreground/60">
                     Trusted by developers worldwide.
                 </p>

@@ -14,13 +14,10 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Check active sessions and sets the user
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });
-
-    // Listen for changes on auth state (sign in, sign out, etc.)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
@@ -46,7 +43,6 @@ export default function Home() {
 
   return (
     <div className="animate-in pb-20">
-      {/* Fixed Sticky Header */}
       <header className="sticky top-0 z-[100] w-full glass border-b border-white/5 backdrop-blur-xl transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1">
@@ -76,7 +72,6 @@ export default function Home() {
               <ChevronDown className={`h-4 w-4 text-white/40 mr-2 transition-transform duration-300 ${menuOpen ? 'rotate-180' : ''}`} />
             </button>
 
-            {/* User Dropdown Menu */}
             {menuOpen && (
               <>
                 <div
@@ -115,8 +110,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto space-y-16 pt-8">
+  <div className="max-w-4xl mx-auto space-y-16 pt-8">
         <AddBookmark userId={user.id} />
 
         <div className="space-y-6">
@@ -128,7 +122,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="pt-20 pb-10 text-center">
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} Smart Bookmarks. All rights reserved.
