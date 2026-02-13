@@ -69,11 +69,15 @@ export default function BookmarkList({ userId }: { userId: string }) {
     const handleDelete = async () => {
         if (!deletingId) return;
 
-        const { error } = await supabase.from('bookmarks').delete().eq('id', deletingId);
-        if (error) {
-            alert(error.message);
-        }
+        const idToRemove = deletingId;
+        // Optimistic update: UI se turant hata do
+        setBookmarks((prev) => prev.filter((b) => b.id !== idToRemove));
         setDeletingId(null);
+
+        const { error } = await supabase.from('bookmarks').delete().eq('id', idToRemove);
+        if (error) {
+            console.error('Delete error:', error.message);
+        }
     };
 
     if (loading) {
@@ -156,7 +160,7 @@ export default function BookmarkList({ userId }: { userId: string }) {
                             </div>
                             <h3 className="text-2xl font-bold tracking-tight text-white">Delete Bookmark?</h3>
                             <p className="text-muted-foreground leading-relaxed">
-                                Are you sure you want to remove this? This action cannot be undone.
+                                Are you sure you want to remove this?
                             </p>
 
                             <div className="flex gap-3 w-full pt-4">
@@ -168,7 +172,7 @@ export default function BookmarkList({ userId }: { userId: string }) {
                                 </button>
                                 <button
                                     onClick={handleDelete}
-                                    className="flex-1 px-6 py-4 bg-destructive text-white rounded-2xl font-bold hover:bg-destructive/90 transition-all shadow-lg shadow-destructive/20 cursor-pointer"
+                                    className="flex-1 px-6 py-4 bg-white/5 hover:bg-white/10 text-white rounded-2xl font-bold transition-all border border-white/5 cursor-pointer"
                                 >
                                     Delete
                                 </button>
