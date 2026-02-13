@@ -64,7 +64,7 @@ export default function Home() {
 
           <button
             onClick={handleSignOut}
-            className="p-2 hover:bg-secondary rounded-xl transition-colors text-muted-foreground hover:text-foreground"
+            className="p-2 hover:bg-secondary rounded-xl transition-colors text-muted-foreground hover:text-foreground cursor-pointer"
             title="Sign Out"
           >
             <LogOut className="h-5 w-5" />
