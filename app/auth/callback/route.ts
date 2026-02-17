@@ -17,8 +17,8 @@ export async function GET(request: Request) {
                     getAll() {
                         return cookieStore.getAll();
                     },
-                    // Yahan : any add kiya hai build error fix karne ke liye
-                    setAll(cookiesToSet: any) {
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                     setAll(cookiesToSet: any) {
                         try {
                             cookiesToSet.forEach(({ name, value, options }: any) =>
                                 cookieStore.set(name, value, options)
