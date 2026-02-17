@@ -17,9 +17,12 @@ export async function GET(request: Request) {
                     getAll() {
                         return cookieStore.getAll();
                     },
+                   // 1. Pehla bypass yahan:
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                      setAll(cookiesToSet: any) {
                         try {
+                            // 2. Doosra bypass yahan (forEach ke liye):
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             cookiesToSet.forEach(({ name, value, options }: any) =>
                                 cookieStore.set(name, value, options)
                             );
