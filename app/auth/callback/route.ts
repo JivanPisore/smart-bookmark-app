@@ -17,15 +17,14 @@ export async function GET(request: Request) {
                     getAll() {
                         return cookieStore.getAll();
                     },
-                    setAll(cookiesToSet) {
+                    // Yahan : any add kiya hai build error fix karne ke liye
+                    setAll(cookiesToSet: any) {
                         try {
-                            cookiesToSet.forEach(({ name, value, options }) =>
+                            cookiesToSet.forEach(({ name, value, options }: any) =>
                                 cookieStore.set(name, value, options)
                             );
                         } catch {
                             // The `setAll` method was called from a Server Component.
-                            // This can be ignored if you have middleware refreshing
-                            // user sessions.
                         }
                     },
                 },
@@ -39,12 +38,8 @@ export async function GET(request: Request) {
             return NextResponse.redirect(`${origin}${next}`);
         }
         console.error("Auth error:", error);
-
     }
 
-    // Return the user to an error page with instructions
     const errorMessage = code ? "exchange-failed" : "no-code";
     return NextResponse.redirect(`${origin}/?error=${errorMessage}`);
 }
-
-

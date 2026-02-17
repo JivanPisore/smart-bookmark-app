@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function AuthCodeError() {
     return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6 animate-in">
