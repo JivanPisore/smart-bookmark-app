@@ -7,8 +7,8 @@ export default function AuthCodeError() {
             <p className="text-muted-foreground max-w-md">
                 There was a problem authenticating your account. Please try signing in again.
             </p>
-            <a
-                href="/"
+            <a 
+                href="/" 
                 className="px-6 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
             >
                 Back to Home
