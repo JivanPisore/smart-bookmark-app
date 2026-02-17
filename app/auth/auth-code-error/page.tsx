@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link'; // Next.js Link use karein taaki ESLint error na de
 
 export default function AuthCodeError() {
     return (
@@ -7,12 +8,12 @@ export default function AuthCodeError() {
             <p className="text-muted-foreground max-w-md">
                 There was a problem authenticating your account. Please try signing in again.
             </p>
-            <a 
+            <Link 
                 href="/" 
                 className="px-6 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
             >
                 Back to Home
-            </a>
+            </Link>
         </div>
     );
 }
