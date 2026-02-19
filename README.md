@@ -47,8 +47,14 @@ Development involved several technical hurdles. Here is how they were addressed:
 - **Problem**: A horizontal form layout looked great on desktop but was unusable on mobile.
 - **Solution**: Implemented a flexible grid system. The "Quick Add" form stacks elements vertically on smaller screens ("Ek ke upar ek") but arranges them horizontally on larger displays to maximize space.
 
----
+### 6. Middleware & Production 500 Errors
+- **Problem**: After deployment, the application frequently encountered a 500: INTERNAL_SERVER_ERROR with the code MIDDLEWARE_INVOCATION_FAILED on Vercel. This was caused by unstable cookie synchronization between the Supabase client and the Next.js middleware during the session refresh process.
+- **Solution**:I implemented an ultra-stable middleware pattern that includes strict environment variable validation and a try-catch wrapper for the auth.getUser() call. I also ensured the NextResponse object is properly refreshed during the setAll cookie operation to maintain header integrity.
 
+### 7. TypeScript Strict Type Enforcement
+7. TypeScript Strict Type Enforcement
+-  **Problem: When using @supabase/ssr, the cookiesToSet parameter and its destructured elements (like name and value) were triggering "implicitly has an 'any' type" errors (ts7006/ts7031) because of the project's strict TypeScript configuration.
+-  **Solution**: I imported the CookieOptions type from @supabase/ssr and applied explicit type definitions to the setAll function. This resolved all linter warnings in VS Code and ensured a 100% error-free build on Vercel.
 ## 🚀 Getting Started
 
 1. **Clone & Install**:
@@ -69,4 +75,4 @@ Development involved several technical hurdles. Here is how they were addressed:
    ```
 
 ---
-Built with ❤️ by [Your Name / Team Name]
+Built by :-> [JIVAN PISORE]
